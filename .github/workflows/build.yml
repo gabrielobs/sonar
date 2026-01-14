@@ -13,11 +13,9 @@ jobs:
         with:
           fetch-depth: 0
       
-      - uses: SonarSource/sonarqube-scan-action@v6
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_SCANNER_OPTS: "-Dsonar.scanner.skipJreProvisioning=true"
-        with:
-          args: >
-            -Dsonar.scanner.skipSslVerification=true
+          NODE_TLS_REJECT_UNAUTHORIZED: "0"
